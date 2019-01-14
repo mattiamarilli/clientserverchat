@@ -11,7 +11,7 @@ struct CLIENT_INFO
 	struct sockaddr_in clientAddr;
 };
 
-char szServerIPAddr[] = "10.0.2.15";     // Inserire l'indirizzo del server
+char szServerIPAddr[] = "127.0.0.1";     // Inserire l'indirizzo del server
 int nServerPort = 5050;                  // Porta usata dai client per interagire con il server
 
 bool InitWinSock2_0()
@@ -124,6 +124,8 @@ int main()
 		return -1;
 	}
 
+	cout << "Server in ascolto sull'indirizzo : " << szServerIPAddr << ":" << nServerPort << endl;
+
 	// Inizia il loop infinito
 	while (true)
 	{
@@ -134,7 +136,7 @@ int main()
 		hClientSocket = accept(hServerSocket, (struct sockaddr *) &clientAddr, &nSize);
 		if (hClientSocket == INVALID_SOCKET)
 		{
-			cout << "accept( ) fallita" << endl;
+			cout << "accept() fallita" << endl;
 		}
 		else
 		{
@@ -145,7 +147,7 @@ int main()
 			clientInfo.clientAddr = clientAddr;
 			clientInfo.hClientSocket = hClientSocket;
 
-			cout << "Client connesso dall'indirizzo " << inet_ntoa(clientAddr.sin_addr) << endl;
+			cout << "Client connesso dall'indirizzo " << inet_ntoa(clientAddr.sin_addr) << ":" << clientAddr.sin_port <<endl;
 			cout << "----------------------------------------------INIZIO CHAT----------------------------------------------" << endl;
 			receivemessage(&clientInfo);
 
