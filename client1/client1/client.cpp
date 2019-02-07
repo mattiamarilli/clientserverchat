@@ -6,8 +6,8 @@
 #include <iostream>
 using namespace std;
 
-char szServerIPAddr[20] = "127.0.0.1";     // Indirizzo del server
-int nServerPort = 5050;                    // Porta usata dai client per interagire con il server
+char szServerIPAddr[20];     // Indirizzo del server
+int nServerPort;             // Porta usata dai client per interagire con il server
 
 bool InitWinSock2_0()
 {
